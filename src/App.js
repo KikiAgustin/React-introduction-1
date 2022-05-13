@@ -40,8 +40,21 @@ function App() {
 
   const handleSubtractionCount = (index) => {
     const newTodos = [...todos];
-    newTodos[index].count = newTodos[index].count - 1;
+
+    if (newTodos[index].count > 0) {
+      newTodos[index].count = newTodos[index].count - 1;
+    } else {
+      newTodos.splice(index, 1);
+    }
     setTodos(newTodos);
+  }
+
+  const getTotalCounts = () => {
+    const totalCounts = todos.reduce((total, num) => {
+      return total + num.count
+    }, 0)
+
+    return totalCounts
   }
 
   return (
@@ -61,6 +74,20 @@ function App() {
             placeholder="List" />
           <button className="add-button" type="submit" >Add</button>
         </form>
+
+        <div className='info'>
+
+          <div className='info-total' >
+            <p>{`Total List : ${todos.length}`}</p>
+          </div>
+          <div className='info-total' >
+            <p>{`Total Counts : ${getTotalCounts()} `}</p>
+          </div>
+          <button onClick={() => setTodos([])} className='delete-all-button' >
+            Delete All List
+          </button>
+
+        </div>
 
         {todos.length > 0 ? (
           <div className="todos" >
