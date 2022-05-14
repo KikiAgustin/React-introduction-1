@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import classNames from 'classnames';
+import Navbar from './component/Navbar';
+import Container from './component/Container';
 import './App.css';
-import shoppingIcon from './assets/shopping-icon.svg';
 import minusIcon from './assets/minus-icon.svg';
 import plusIcon from './assets/plus-icon.svg';
 
@@ -59,12 +60,10 @@ function App() {
 
   return (
     <>
-      <nav className="nav" >
-        <img className="nav-icon" src={shoppingIcon} alt="Shopping Icon" />
-        <h1 className="nav-title" >Shopping List</h1>
-      </nav>
 
-      <section className="container" >
+      <Navbar />
+
+      <Container>
         <form className="form" onSubmit={handleSubmit} >
           <input
             onChange={(e) => { setValue(e.target.value) }}
@@ -116,7 +115,7 @@ function App() {
           <div>Kosong</div>
         )}
 
-      </section>
+      </Container>
     </>
   );
 }
