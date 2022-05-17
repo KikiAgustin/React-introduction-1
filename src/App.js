@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import classNames from 'classnames';
+
 import Navbar from './component/Navbar';
 import Container from './component/Container';
+import SearchInput from './component/SearchInput';
+
 import './App.css';
 import minusIcon from './assets/minus-icon.svg';
 import plusIcon from './assets/plus-icon.svg';
+import SearchInptut from './component/SearchInput';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -62,17 +66,12 @@ function App() {
     <>
 
       <Navbar />
-
       <Container>
-        <form className="form" onSubmit={handleSubmit} >
-          <input
-            onChange={(e) => { setValue(e.target.value) }}
-            value={value}
-            className="input"
-            type="text"
-            placeholder="List" />
-          <button className="add-button" type="submit" >Add</button>
-        </form>
+        <SearchInptut
+          onSubmit={handleSubmit}
+          onChange={(e) => setValue(e.target.value)}
+          value={value}
+        />
 
         <div className='info'>
 
