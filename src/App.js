@@ -4,11 +4,8 @@ import classNames from 'classnames';
 import Navbar from './component/Navbar';
 import Container from './component/Container';
 import SearchInput from './component/SearchInput';
-
-import './App.css';
-import minusIcon from './assets/minus-icon.svg';
-import plusIcon from './assets/plus-icon.svg';
-import SearchInptut from './component/SearchInput';
+import Info from './component/Info';
+import Todos from './component/Todos';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -67,49 +64,25 @@ function App() {
 
       <Navbar />
       <Container>
-        <SearchInptut
+        <SearchInput
           onSubmit={handleSubmit}
           onChange={(e) => setValue(e.target.value)}
           value={value}
         />
 
-        <div className='info'>
-
-          <div className='info-total' >
-            <p>{`Total List : ${todos.length}`}</p>
-          </div>
-          <div className='info-total' >
-            <p>{`Total Counts : ${getTotalCounts()} `}</p>
-          </div>
-          <button onClick={() => setTodos([])} className='delete-all-button' >
-            Delete All List
-          </button>
-
-        </div>
+        <Info
+          todosLength={todos.length}
+          totalCounts={getTotalCounts()}
+          onDelete={() => setTodos([])}
+        />
 
         {todos.length > 0 ? (
-          <div className="todos" >
-            {todos.map((todo, index, arr) => {
-              return (
-                <div key={index} className={`todo ${!(arr.length === index + 1) && 'todo-divider'}`} >
-                  {todo.title}
+          <Todos
+            todos={todos}
+            onSubstraction={(index) => handleSubtractionCount(index)}
+            onAddition={(index) => handleAdditionCount(index)}
 
-                  <div className="todo-icon-wrapper" >
-                    <div className='todo-count' > {todo.count} </div>
-
-                    <button onClick={() => handleSubtractionCount(index)} className='todo-action-button' >
-                      <img src={minusIcon} alt="Minus Icon" />
-                    </button>
-
-                    <button onClick={() => handleAdditionCount(index)} className='todo-action-button' >
-                      <img src={plusIcon} alt="Plus Icon" />
-                    </button>
-
-                  </div>
-                </div>
-              )
-            })}
-          </div>
+          />
         ) : (
           <div>Kosong</div>
         )}
