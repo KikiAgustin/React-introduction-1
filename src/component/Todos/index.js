@@ -4,10 +4,10 @@ import style from './Todos.module.css';
 import minusIcon from '../../assets/minus-icon.svg';
 import plusIcon from '../../assets/plus-icon.svg';
 
-const Todos = (props) => {
+const Todos = ({ todos, onSubstraction, onAddition }) => {
     return (
         <div className="todos" >
-            {props.todos.map((todo, index, arr) => {
+            {todos.map((todo, index, arr) => {
                 return (
                     <div key={index}
                         // className={`todo ${!(arr.length === index + 1) && 'todo-divider'}`} 
@@ -21,11 +21,11 @@ const Todos = (props) => {
                         <div className={style.todoIconWrapper} >
                             <div className={style.todoCount} > {todo.count} </div>
 
-                            <button onClick={() => props.onSubstraction(index)} className={style.todoActionButton} >
+                            <button onClick={() => onSubstraction(index)} className={style.todoActionButton} >
                                 <img src={minusIcon} alt="Minus Icon" />
                             </button>
 
-                            <button onClick={() => props.onAddition(index)} className={style.todoActionButton} >
+                            <button onClick={() => onAddition(index)} className={style.todoActionButton} >
                                 <img src={plusIcon} alt="Plus Icon" />
                             </button>
 

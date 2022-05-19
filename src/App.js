@@ -6,6 +6,7 @@ import Container from './component/Container';
 import SearchInput from './component/SearchInput';
 import Info from './component/Info';
 import Todos from './component/Todos';
+import Empty from './component/Empty'
 
 function App() {
   const [count, setCount] = useState(0);
@@ -84,7 +85,7 @@ function App() {
 
           />
         ) : (
-          <div>Kosong</div>
+          <Empty />
         )}
 
       </Container>
